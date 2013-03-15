@@ -1,0 +1,24 @@
+<h1>FMS landing page</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Client Name</th>
+            <th>Client IP</th>
+            <th>Client Version</th>
+            <th>Session Name</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php 
+foreach ($this->clients as $client)
+{
+    echo "<tr>";
+    echo "<td><a href=\"/clients/admin-client/id/" . $client->clientID . "\">" . $client->clientName . "</a></td>";
+    echo "<td>" . $client->clientIP . "</td>";
+    echo "<td>" . $client->version . "</td>";
+    echo "<td>" . $client->sessionName . "</td>";
+    echo "</tr>";
+}
+?>
+    </tbody>
+</table>

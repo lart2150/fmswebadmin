@@ -1,0 +1,24 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>Status</th>
+            <th>Size</th>
+            <th>Privlages</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php 
+
+foreach ($this->files as $file)
+{
+    echo "<tr>";
+    echo "<td><a href=\"/files/admin-file/id/" . $file->fileID . "\">" . $file->name  . "</a></td>";
+    echo "<td>" . $file->status . "</td>";
+    echo "<td>" . $file->size . "</td>";
+    echo "<td>" . $file->privlageSet . "</td>";
+    echo "</tr>";
+}
+?>
+    </tbody>
+</table>

@@ -1,0 +1,21 @@
+<h1><?php echo $this->file->name ?></h1>
+<div class="row">
+<div class="span3">Status</div><div class="span9"><?php echo $this->file->status ?></div>
+<div class="span3">Size</div><div class="span9"><?php echo $this->file->size ?></div>
+<div class="span3">Guest allowed</div><div class="span9"><?php echo $this->file->guestAllowed  ? 'true' : 'false' ?></div>
+<div class="span3">Number of connected Clients</div><div class="span9"><?php echo $this->file->connectedClientCount?></div>
+<div class="span3">Full Path</div><div class="span9"><?php echo $this->file->path ?></div>
+</div>
+
+<div class="span9">
+    <div class="btn-group">
+        <button data-toggle="dropdown" class="btn dropdown-toggle">File Actions<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="adminfileinteraction.jsp?action=close&id=<?php echo $this->file->fileID ?>">Close</a></li>
+            <li><a href="adminfileinteraction.jsp?action=open&id=<?php echo $this->file->fileID ?>">Open</a></li>
+            <li><a href="adminfileinteraction.jsp?action=pause&id=<?php echo $this->file->fileID ?>">Pause</a></li>
+            <li><a href="adminfileinteraction.jsp?action=resume&id=<?php echo $this->file->fileID ?>">Resume</a></li>
+            <li><a href="#">Message Clients</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<h1><?php echo $this->client->sessionName ?></h1>
+<div class="row">
+<div class="span3">Client Name</div><div class="span9"><?php echo $this->client->clientName ?></div>
+<div class="span3">Session Name</div><div class="span9"><?php echo $this->client->sessionName ?></div>
+<div class="span3">Client IP</div><div class="span9"><?php echo $this->client->clientIP ?></div>
+<div class="span3">Client Version</div><div class="span9"><?php echo $this->client->version?></div>
+<div class="span3">Client OS</div><div class="span9"><?php echo $this->client->clientOS ?></div>
+<?php 
+if ($this->client->connectionTime instanceof stdClass) {
+	$connTime = new DateTime();
+	$connTime->setTimestamp((int)$this->client->connectionTime->timeInMillis/100);
+	$connTimeStr = $connTime->format("j/n/y g:i A");
+} else {
+	$connTimeStr = $this->client->connectionTime;
+}
+?>
+<div class="span3">Connection Time</div><div class="span9"><?php echo $connTimeStr ?></div>
+</div>
+<?php 
+if ($this->client->databaseConnections) {
+?>
+<br/>
+<h2>File connections</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>File ID</th>
+            <th>accountName</th>
+            <th>connnectTime</th>
+            <th>privlageSet</th>
+            <th>type</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php 
+
+foreach ($this->client->databaseConnections as $file)
+{
+    echo "<tr>";
+    echo "<td><a href=\"/files/admin-file/id/" . $file->fileID . "\">" . $this->files[$file->fileID]->name  . "</a></td>";
+    echo "<td>" . $file->accountName . "</td>";
+    echo "<td>" . $file->connnectTime . "</td>";
+    echo "<td>" . $file->privlageSet . "</td>";
+    echo "<td>" . $file->type . "</td>";
+    echo "</tr>";
+}
+?>
+    </tbody>
+</table>
+<?php 
+} 
+?>
+
+
+<div class="span9">
+    <div class="btn-group">
+        <button data-toggle="dropdown" class="btn dropdown-toggle">Client Actions<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="adminfileinteraction.jsp?action=close&id=<?php echo $this->client->fileID ?>">Close</a></li>
+            <li><a href="adminfileinteraction.jsp?action=open&id=<?php echo $this->client->fileID ?>">Open</a></li>
+            <li><a href="adminfileinteraction.jsp?action=pause&id=<?php echo $this->client->fileID ?>">Pause</a></li>
+            <li><a href="adminfileinteraction.jsp?action=resume&id=<?php echo $this->client->fileID ?>">Resume</a></li>
+            <li><a href="#">Message Clients</a></li>
+        </ul>
+    </div>
+</div>
